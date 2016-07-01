@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheWorld.Services;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using TheWorld.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TheWorld
 {
@@ -31,6 +34,15 @@ namespace TheWorld
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<WorldContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddEntityFramework()
+            //    .AddSqlServer()
+            //    .AddDbContext<WorldContext>();
+
+
 
             services.AddScoped<IMailService, DebugMailService>();
         }
