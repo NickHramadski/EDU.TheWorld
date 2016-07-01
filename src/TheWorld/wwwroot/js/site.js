@@ -16,15 +16,18 @@
 //        alert(me.text());
     //    });
 
-    $sidebarAndWrapper = $("#sidebar, #wrapper");
+    var $sidebarAndWrapper = $("#sidebar, #wrapper");
+    var $icon = $("#sidebarToggle i.fa");
 
     $("#sidebarToggle").on("click", function (e) {
         $sidebarAndWrapper.toggleClass("hide-sidebar");
 
         if ($sidebarAndWrapper.hasClass("hide-sidebar")) {
-            $(this).text("Show Sidebar!");
+            $icon.removeClass("fa-angle-left");
+            $icon.addClass("fa-angle-right");
         } else {
-            $(this).text("Hide Sidebar!");
+            $icon.addClass("fa-angle-left");
+            $icon.removeClass("fa-angle-right");
         }
     });
 })();
